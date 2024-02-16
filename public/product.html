@@ -35,7 +35,7 @@
       ).innerText = `${catalogName} Products`;
 
       // Fetch data for the specified catalog
-      fetch(`https://digi-catalog.onrender.com/api/catelogs/${catalogName}`)
+      fetch(`https://catalogify-server.onrender.com/api/catalogs/${catalogName}`)
         .then((response) => response.json())
         .then((data) => displayProducts(data.products));
 
