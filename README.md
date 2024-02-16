@@ -1,7 +1,7 @@
 
-# Digi Catalog App
+# Catalogify 
 
-Digi Catalog App is a web application designed for ONDC BUILD FOR BHARAT by team NERD NETWORK, aimed at sellers who wish to digitize their catalogs for selling on e-commerce websites. This project simplifies the catalog digitalization process, allowing sellers to efficiently manage their product catalogs.
+Catalogify is a web application aimed at sellers who wish to digitize their catalogs for selling on e-commerce websites. This project simplifies the catalog digitalization process, allowing sellers to efficiently manage their product catalogs.
 
 
 ## Features
@@ -37,7 +37,7 @@ Digi Catalog App is a web application designed for ONDC BUILD FOR BHARAT by team
 
 The Digi Catalog App is deployed on Render.
 
-Link: [Digi Catalog App](https://digi-catalog-app.onrender.com/)
+Link: [Digi Catalog App]()
 ## Server
 
 The server is hosted on Render and powered by Node.js and Express.
