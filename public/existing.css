@@ -1,0 +1,62 @@
+body {
+  font-family: roboto;
+  background-color: whitesmoke;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.logo {
+  margin-top: 20%;
+  width: 250px;
+  height: auto;
+}
+
+.main-content {
+  margin-top: 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-button {
+  background-color: transparent;
+  border: 2px solid #332885;
+  border-radius: 50px;
+  color: #332885;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px 40px;
+  cursor: pointer;
+}
+/* Hover effect - invert color */
+.main-button:hover {
+  background-color: #332885;
+  color: whitesmoke;
+}
+/* Click effect - decrease opacity */
+.main-button:active {
+  opacity: 0.8;
+}
+.or-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #332885;
+}
+
+.output {
+  display: grid;
+  width: 500px;
+  background-color: #332885;
+  border-radius: 10px;
+  color: whitesmoke;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px 40px;
+  cursor: pointer;
+}

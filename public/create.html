@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="create.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <title>Digi catalog App</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="navbar">
+        <img src="logo.png" alt="Digi catalog" class="logo" />
+      </div>
+      <div><p class="heading">Create a new product catalog</p></div>
+      <div class="upload">
+        <label for="fileInput">Choose a file:</label>
+        <input
+          class="upload-button"
+          type="file"
+          id="fileInput"
+          name="fileInput"
+        />
+      </div>
+      <input type="text" class="catalog-name" id="catalogName" placeholder="Catalog Name">
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Brand</th>
+                <th>Product ID</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td><input type="file"></td>
+            </tr>
+            <tr>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td><input type="file"></td>
+            </tr>
+            <tr>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td><input type="file"></td>
+            </tr>
+            <tr>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td><input type="file"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="button-container">
+        <button onclick="submitForm()">Submit</button>
+        <button onclick="addRow()">Add Row</button>
+    </div>
+
+    <script>
+      function addRow() {
+          var table = document.querySelector('table');
+          var newRow = table.insertRow(table.rows.length);
+          var cell1 = newRow.insertCell(0);
+          var cell2 = newRow.insertCell(1);
+          var cell3 = newRow.insertCell(2);
+          var cell4 = newRow.insertCell(3);
+
+          cell1.contentEditable = "true";
+          cell2.contentEditable = "true";
+          cell3.contentEditable = "true";
+          cell4.innerHTML = '<input type="file">';
+      }
+
+      function submitForm() {
+          var catalogName = document.getElementById('catalogName').value;
+          var products = [];
+
+          var tableRows = document.querySelectorAll('table tbody tr');
+          tableRows.forEach(function (row) {
+              var cells = row.cells;
+              var product = {
+                  "productName": cells[0].textContent.trim(),
+                  "brand": cells[1].textContent.trim(),
+                  "id": cells[2].textContent.trim(),
+                  "productImage": "" // Placeholder for image URL
+              };
+
+              var fileInput = cells[3].querySelector('input[type="file"]');
+              if (fileInput.files.length > 0) {
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+
+                    // HAVE TO FIX BASE64 IS TOO LARGE
+                      // product.productImage = e.target.result;
+                      product.productImage = "Image will be here";
+
+                      products.push(product);
+                      if (products.length === tableRows.length) {
+                          // All products processed, submit JSON data
+                          submitJSONData(catalogName, products);
+                      }
+                  }
+                  reader.readAsDataURL(fileInput.files[0]);
+              } else {
+                  // If no image is uploaded, add product without an image URL
+                  products.push(product);
+                  if (products.length === tableRows.length) {
+                      // All products processed, submit JSON data
+                      submitJSONData(catalogName, products);
+                  }
+              }
+          });
+      }
+
+      function submitJSONData(catalogName, products) {
+          var jsonData = {
+              "catalogName": catalogName,
+              "products": products
+          };
+
+         
+          // Making a POST request with JSON data
+          fetch('https://digi-catalog.onrender.com/api/catelogs/', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(jsonData)
+          })
+          .then(response => response.json())
+          .then(data => {
+              console.log('Success:', data);
+              alert('Form submitted!');
+              window.history.back();
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              alert('Error submitting form');
+          });
+      }
+  </script> </body>
+</html>
