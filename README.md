@@ -37,7 +37,7 @@ Catalogify is a web application aimed at sellers who wish to digitize their cata
 
 The Digi Catalog App is deployed on Render.
 
-Link: [Digi Catalog App]()
+Link: [catalogify App](https://catalogify-app.onrender.com)
 ## Server
 
 The server is hosted on Render and powered by Node.js and Express.
